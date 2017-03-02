@@ -1,0 +1,29 @@
+{
+  "name": "comolo/isotope-paymill",
+  "description": "Isotope extension to use Paymill credit card payments in your webshop.",
+  "type":"contao-module",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Hendrik Obermayer",
+      "role": "Developer",
+      "homepage": "https://github.com/henobi"
+    }
+  ],
+  "require": {
+    "isotope/isotope-core": "~2.3",
+    "paymill/paymill": "^4.4"
+  },
+  "autoload":{
+    "psr-4": {
+      "Comolo\\Isotope\\": "src/"
+    }
+  },
+  "extra":{
+    "contao":{
+      "sources":{
+        "":"system/modules/isotope-paymill"
+      }
+    }
+  }
+}

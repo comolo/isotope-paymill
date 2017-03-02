@@ -1,0 +1,38 @@
+<div style="padding: 5px 18px;">
+    <h2 class="pending">Paymill Transaktion: Zahlungsdetails</h2> <!-- Todo: Translate -->
+</div>
+
+<div>
+    <table cellpadding="0" cellspacing="0" class="tl_show" summary="Table lists all details of an entry" style="width:650px">
+        <tbody>
+        <tr>
+            <td style="vertical-align:top"><span class="tl_label">ID: </span></td>
+            <td><?php echo $this->order->id; ?></td>
+        </tr>
+        <tr>
+            <td class="tl_bg" style="vertical-align:top"><span class="tl_label">IBAN: </span></td>
+            <td class="tl_bg"><?php echo $this->payment_data['iso_sepa_iban']; ?></td>
+        </tr>
+        <tr>
+            <td class="" style="vertical-align:top"><span class="tl_label">BIC: </span></td>
+            <td class=""><?php echo $this->payment_data['iso_sepa_bic']; ?></td>
+        </tr>
+        <tr>
+            <td class="tl_bg" style="vertical-align:top"><span class="tl_label">Konto-Inhaber:</span></td>
+            <td class="tl_bg"><?php echo $this->payment_data['iso_sepa_accountholder']; ?></td>
+        </tr>
+        <tr>
+            <td class="" style="vertical-align:top"><span class="tl_label">Mandat: </span></td>
+            <td class=""><?php echo $this->payment_data['iso_sepa_mandate']; ?></td>
+        </tr>
+        <tr>
+            <td class="tl_bg" style="vertical-align:top"><span class="tl_label">Mandat vom: </span></td>
+            <td class="tl_bg"><?php echo date('d-m-Y', $this->payment_data['iso_sepa_date_of_issue']); ?></td>
+        </tr>
+        <tr>
+            <td class="" style="vertical-align:top"><span class="tl_label">Betrag: </span></td>
+            <td class=""><?php echo $this->order->total; ?> EUR</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,85 @@
+<script type="text/javascript">
+    var PAYMILL_PUBLIC_KEY = '<? echo $this->paymill_public_key; ?>';
+</script>
+
+<script type="text/javascript" src="https://bridge.paymill.com/"></script>
+
+<script type="text/javascript">
+
+    /*function callAjax(url, callback){
+        var xmlhttp;
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function(){
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+                callback(xmlhttp.responseText);
+            }
+        }
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+    }*/
+
+    var options = {
+        lang: '<? echo strtolower($GLOBALS['TL_LANGUAGE']); ?>'
+    };
+
+    var callback = function (error) {
+        if (error) {
+            console.log(error.apierror, error.message);
+        }
+        else {
+            //Frame was loaded successfully
+        }
+    };
+
+    var initPayframe = function () {
+        paymill.embedFrame('credit-card-fields', options, callback);
+    };
+
+    var submitForm = function () {
+        paymill.createTokenViaFrame({
+                amount_int: <? echo $this->amount; ?>, // 420 for 4.20 amount_int hast to be an integer, required
+                currency: '<? echo $this->currency; ?>', // required
+                email: '<?php echo $this->address->email; ?>' //required
+            },
+            function (error, result) {
+                // Handle error or process result.
+                if (error) {
+                    // Token could not be created, check error object for reason.
+                    console.log(error.apierror, error.message);
+                }
+                // Token was created successfully and can be sent to backend.
+                else {
+                    // Fetch the token, and add it to the form, which is then submitted to your server
+                    var form = document.getElementById("payment-form");
+                    var tokenField = document.getElementById("paymillToken");
+                    tokenField.value = result.token;
+
+                    // send token to server via ajax
+                    //callAjax('<?php echo $this->notify_url; ?>&paymill_token='+result.token, function () {
+                        form.submit();
+                    //});
+                }
+            }
+        );
+    };
+
+    window.onload = function () {
+        initPayframe();
+    };
+</script>
+
+<h2><?= $this->headline ?></h2>
+<p class="message"><?= $this->message ?></p>
+<form id="payment-form" action="<?= $this->action ?>" method="post">
+    <div id="credit-card-fields"></div>
+    <input id="paymillToken" name="paymillToken" type="hidden"/>
+
+    <noscript>
+        <p><?= $this->noscript ?></p>
+        <input type="submit" value="<?= $this->slabel ?>" onclick="submitForm()">
+    </noscript>
+</form>
+
+<div class="">
+    <a href="<?php echo $this->cancel_return; ?>">Abbrechen</a>
+</div>
