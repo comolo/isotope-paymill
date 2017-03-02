@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * Copyright (C) 2017 Comolo GmbH
+ *
+ * @author    Hendrik Obermayer
+ * @copyright 2017 Comolo GmbH <https://www.comolo.de>
+ * @license   MIT
+ */
+
 namespace Comolo\Isotope\Model\Payment;
 
 use System;
@@ -20,7 +28,7 @@ use Paymill\Request as PaymillRequest;
 use Paymill\Services\PaymillException;
 
 /**
- * PayOne payment method
+ * Paymill payment method
  *
  * @property string $paymill_private_key
  * @property string $paymill_public_key
