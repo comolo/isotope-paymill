@@ -12,7 +12,6 @@ namespace Comolo\Isotope\Model\Payment;
 
 use System;
 use Environment;
-
 use Isotope\Interfaces\IsotopePayment;
 use Isotope\Interfaces\IsotopeProductCollection;
 use Isotope\Interfaces\IsotopePurchasableCollection;
@@ -22,7 +21,6 @@ use Isotope\Model\ProductCollection\Order;
 use Isotope\Module\Checkout;
 use Isotope\Template;
 use Isotope\Currency;
-
 use Paymill\Models\Request\Transaction as PaymillTransaction;
 use Paymill\Request as PaymillRequest;
 use Paymill\Services\PaymillException;

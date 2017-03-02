@@ -6,6 +6,7 @@
 
 <script type="text/javascript">
 
+    // TODO
     /*function callAjax(url, callback){
         var xmlhttp;
         xmlhttp = new XMLHttpRequest();
@@ -54,6 +55,7 @@
                     var tokenField = document.getElementById("paymillToken");
                     tokenField.value = result.token;
 
+                    // TODO
                     // send token to server via ajax
                     //callAjax('<?php echo $this->notify_url; ?>&paymill_token='+result.token, function () {
                         form.submit();
@@ -81,5 +83,5 @@
 </form>
 
 <div class="">
-    <a href="<?php echo $this->cancel_return; ?>">Abbrechen</a>
+    <a href="<?php echo $this->cancel_return; ?>">Abbrechen</a> <!-- Todo: translation -->
 </div>
