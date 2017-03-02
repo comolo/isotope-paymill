@@ -11,4 +11,4 @@
 /**
  * Payment methods
  */
-\Isotope\Model\Payment::registerModelType('sepa_direct_deposit', 'ComoloIsotope\Model\Payment\SepaDirectDeposit');
+\Isotope\Model\Payment::registerModelType('paymill', \Comolo\Isotope\Model\Payment\PaymillPayment::class);
