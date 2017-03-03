@@ -93,13 +93,16 @@ class PaymillPayment extends Postsale
             $request = new PaymillRequest($this->paymill_private_key);
             $response = $request->create($transaction);
 
+            /**
+             * @see: https://developers.paymill.com/API/index#response-codes
+             */
             if ($response->getResponseCode() == 20000) {
                 // Received payment
-                /* todo
-                 * $objOrder->payment_data = array(
-                    'something' => 'something',
-                );*/
-
+                $objOrder->payment_data = [
+                    'paymill_code' => $response->getResponseCode(),
+                    'paymill_status' => $response->getStatus(),
+                    'paymill_id' => $response->getId(),
+                ];
                 $objOrder->setDatePaid(time());
                 $objOrder->updateOrderStatus($this->new_order_status);
                 $objOrder->save();
@@ -109,31 +112,10 @@ class PaymillPayment extends Postsale
 
             return false;
 
-            // todo: remove
-            /*
-            var_dump([
-                'code' => $response->getResponseCode(), // 20000 => ok
-                'status' => $response->getStatus(), // closed
-                'id' => $response->getId(), // tran_4959d795d57306b4922e6999a017
-                'shortId' => $response->getShortId(),
-            ]);
-            */
-
         } catch(PaymillException $e){
 
             System::log('Paymill error. Order "' . $objOrder->getId() . '". Paymill Status: '.$e->getResponseCode() .' Error: '.$e->getErrorMessage(), __METHOD__, TL_ERROR);
-
             return false;
-
-            // todo: remove
-            /*echo $e->getResponseCode();
-            echo "<br>";
-            echo $e->getStatusCode();
-            echo "<br>";
-            echo $e->getErrorMessage();
-            echo "<br>";
-            echo $e->getRawError();
-            */
         }
     }
 
