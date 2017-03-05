@@ -6,7 +6,7 @@
 
 <script type="text/javascript">
 
-    // TODO
+    // TODO: remove if current solution works
     /*function callAjax(url, callback){
         var xmlhttp;
         xmlhttp = new XMLHttpRequest();
@@ -28,7 +28,7 @@
             console.log(error.apierror, error.message);
         }
         else {
-            //Frame was loaded successfully
+            console.log('Frame loaded successfully');
         }
     };
 
@@ -38,24 +38,20 @@
 
     var submitForm = function () {
         paymill.createTokenViaFrame({
-                amount_int: <? echo $this->amount; ?>, // 420 for 4.20 amount_int hast to be an integer, required
-                currency: '<? echo $this->currency; ?>', // required
-                email: '<?php echo $this->address->email; ?>' //required
+                amount_int: <? echo $this->amount; ?>,
+                currency: '<? echo $this->currency; ?>',
+                email: '<?php echo $this->address->email; ?>'
             },
             function (error, result) {
-                // Handle error or process result.
                 if (error) {
-                    // Token could not be created, check error object for reason.
-                    console.log(error.apierror, error.message);
+                    console.log(error.apierror, error.message); // todo: view error
                 }
-                // Token was created successfully and can be sent to backend.
                 else {
-                    // Fetch the token, and add it to the form, which is then submitted to your server
                     var form = document.getElementById("payment-form");
                     var tokenField = document.getElementById("paymillToken");
                     tokenField.value = result.token;
 
-                    // TODO
+                    // TODO: remove if current solution works
                     // send token to server via ajax
                     //callAjax('<?php echo $this->notify_url; ?>&paymill_token='+result.token, function () {
                         form.submit();

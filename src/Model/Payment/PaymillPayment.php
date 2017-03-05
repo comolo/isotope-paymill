@@ -41,7 +41,6 @@ class PaymillPayment extends Postsale
      */
     public function backendInterface($orderId)
     {
-        // todo
         $database = \Database::getInstance();
         $order = $database
             ->prepare("SELECT * FROM tl_iso_product_collection WHERE id LIKE ?")
