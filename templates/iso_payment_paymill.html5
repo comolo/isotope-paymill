@@ -48,7 +48,6 @@
 </script>
 
 <h2><?= $this->headline ?></h2>
-<p class="message"><?= $this->message ?></p>
 <form id="payment-form" action="<?= $this->action ?>" method="post">
     <div id="credit-card-fields"></div>
     <input id="paymillToken" name="paymillToken" type="hidden">

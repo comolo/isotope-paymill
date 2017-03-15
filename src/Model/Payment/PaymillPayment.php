@@ -154,7 +154,6 @@ class PaymillPayment extends Postsale
         $objTemplate->cancel_return = Environment::get('base') . Checkout::generateUrlForStep('failed');
 
         $objTemplate->headline = specialchars($GLOBALS['TL_LANG']['MSC']['pay_with_redirect'][0]);
-        $objTemplate->message = specialchars($GLOBALS['TL_LANG']['MSC']['pay_with_redirect'][1]);
         $objTemplate->slabel = specialchars($GLOBALS['TL_LANG']['MSC']['pay_with_redirect'][2]);
 
         return $objTemplate->parse();
