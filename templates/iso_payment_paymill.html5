@@ -5,20 +5,6 @@
 <script type="text/javascript" src="https://bridge.paymill.com/"></script>
 
 <script type="text/javascript">
-
-    // TODO: remove if current solution works
-    /*function callAjax(url, callback){
-        var xmlhttp;
-        xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function(){
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
-                callback(xmlhttp.responseText);
-            }
-        }
-        xmlhttp.open("GET", url, true);
-        xmlhttp.send();
-    }*/
-
     var options = {
         lang: '<? echo strtolower($GLOBALS['TL_LANGUAGE']); ?>'
     };
@@ -45,18 +31,12 @@
             function (error, result) {
                 if (error) {
                     console.log(error.apierror, error.message); // todo: view error
-                    return false;
                 }
                 else {
                     var form = document.getElementById("payment-form");
                     var tokenField = document.getElementById("paymillToken");
                     tokenField.value = result.token;
-
-                    // TODO: remove if current solution works
-                    // send token to server via ajax
-                    //callAjax('<?php echo $this->notify_url; ?>&paymill_token='+result.token, function () {
-                        form.submit();
-                    //});
+                    form.submit();
                 }
             }
         );

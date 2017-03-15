@@ -25,3 +25,9 @@ $GLOBALS['TL_DCA']['tl_iso_payment']['fields']['paymill_private_key'] = [
     'eval'                  => array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
     'sql'                   => "varchar(255) NOT NULL default ''",
 ];
+
+/*
+Todo:
+ - add field for paymill transaction description
+ - add a description above the payment fields
+*/

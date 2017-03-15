@@ -125,7 +125,7 @@ class PaymillPayment extends Postsale
     public function getPostsaleOrder()
     {
         // todo:
-        return Order::findByPk((int) \Input::post('order'));
+        return Order::findByPk((int) \Input::get('id'));
     }
 
     /**
@@ -143,17 +143,15 @@ class PaymillPayment extends Postsale
 
         $objTemplate->setData($this->arrData);
         $objTemplate->id = $objOrder->getId();
-        $objTemplate->amount = Currency::getAmountInMinorUnits($objOrder->getTotal(), $objOrder->getCurrency()); // todo: check
+        $objTemplate->amount = Currency::getAmountInMinorUnits($objOrder->getTotal(), $objOrder->getCurrency());
         $objTemplate->currency = $objOrder->getCurrency();
-        $objTemplate->paymill_public_key = $this->paymill_public_key; // todo: not working
+        $objTemplate->paymill_public_key = $this->paymill_public_key;
+        $objTemplate->address = $objOrder->getBillingAddress();
 
-        // todo: email missing
 
         $objTemplate->request_token = RequestToken::get();
         $objTemplate->action = Environment::get('base') . Checkout::generateUrlForStep('complete', $objOrder);
         $objTemplate->cancel_return = Environment::get('base') . Checkout::generateUrlForStep('failed');
-        // todo: remove
-        //$objTemplate->notify_url = Environment::get('base') . 'system/modules/isotope/postsale.php?mod=pay&id=' . $this->id;
 
         $objTemplate->headline = specialchars($GLOBALS['TL_LANG']['MSC']['pay_with_redirect'][0]);
         $objTemplate->message = specialchars($GLOBALS['TL_LANG']['MSC']['pay_with_redirect'][1]);
