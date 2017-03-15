@@ -70,7 +70,8 @@
 <p class="message"><?= $this->message ?></p>
 <form id="payment-form" action="<?= $this->action ?>" method="post">
     <div id="credit-card-fields"></div>
-    <input id="paymillToken" name="paymillToken" type="hidden"/>
+    <input id="paymillToken" name="paymillToken" type="hidden">
+    <input name="REQUEST_TOKEN" type="hidden" value="<?php echo $this->request_token; ?>">
     <input type="submit" value="<?= $this->slabel ?>" onclick="submitForm()">
 </form>
 

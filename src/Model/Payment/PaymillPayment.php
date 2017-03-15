@@ -12,6 +12,7 @@ namespace Comolo\Isotope\Model\Payment;
 
 use System;
 use Environment;
+use RequestToken;
 use Isotope\Interfaces\IsotopePayment;
 use Isotope\Interfaces\IsotopeProductCollection;
 use Isotope\Interfaces\IsotopePurchasableCollection;
@@ -146,6 +147,7 @@ class PaymillPayment extends Postsale
         $objTemplate->currency = $objOrder->getCurrency();
         $objTemplate->paymill_public_key = $objModule->paymill_public_key;
 
+        $objTemplate->request_token = RequestToken::get();
         $objTemplate->action = Environment::get('base') . Checkout::generateUrlForStep('complete', $objOrder);
         $objTemplate->cancel_return = Environment::get('base') . Checkout::generateUrlForStep('failed');
         // todo: remove
