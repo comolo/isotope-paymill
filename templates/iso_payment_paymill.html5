@@ -71,11 +71,7 @@
 <form id="payment-form" action="<?= $this->action ?>" method="post">
     <div id="credit-card-fields"></div>
     <input id="paymillToken" name="paymillToken" type="hidden"/>
-
-    <noscript>
-        <p><?= $this->noscript ?></p>
-        <input type="submit" value="<?= $this->slabel ?>" onclick="submitForm()">
-    </noscript>
+    <input type="submit" value="<?= $this->slabel ?>" onclick="submitForm()">
 </form>
 
 <div class="">
