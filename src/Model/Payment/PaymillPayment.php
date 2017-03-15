@@ -49,6 +49,7 @@ class PaymillPayment extends Postsale
         $template = new \BackendTemplate('be_iso_payment_paymill');
         $template->order = $order;
         $template->payment_data = unserialize($order->payment_data);
+
         return $template->parse();
     }
 
@@ -77,7 +78,7 @@ class PaymillPayment extends Postsale
         $paymillToken = \Input::post('paymillToken');
 
         if (!$paymillToken || empty($paymillToken)) {
-            return false; // no token
+            return false;
         }
 
         $transaction = new PaymillTransaction();
@@ -112,10 +113,18 @@ class PaymillPayment extends Postsale
             return false;
 
         } catch(PaymillException $e){
-
             System::log('Paymill error. Order "' . $objOrder->getId() . '". Paymill Status: '.$e->getResponseCode() .' Error: '.$e->getErrorMessage(), __METHOD__, TL_ERROR);
             return false;
         }
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getPostsaleOrder()
+    {
+        // todo:
+        return Order::findByPk((int) \Input::post('order'));
     }
 
     /**
