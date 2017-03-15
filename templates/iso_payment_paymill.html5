@@ -45,6 +45,7 @@
             function (error, result) {
                 if (error) {
                     console.log(error.apierror, error.message); // todo: view error
+                    return false;
                 }
                 else {
                     var form = document.getElementById("payment-form");
@@ -72,7 +73,7 @@
     <div id="credit-card-fields"></div>
     <input id="paymillToken" name="paymillToken" type="hidden">
     <input name="REQUEST_TOKEN" type="hidden" value="<?php echo $this->request_token; ?>">
-    <input type="submit" value="<?= $this->slabel ?>" onclick="submitForm()">
+    <button type="button" onclick="submitForm();"><?= $this->slabel ?></button>
 </form>
 
 <div class="">

@@ -145,7 +145,9 @@ class PaymillPayment extends Postsale
         $objTemplate->id = $objOrder->getId();
         $objTemplate->amount = Currency::getAmountInMinorUnits($objOrder->getTotal(), $objOrder->getCurrency()); // todo: check
         $objTemplate->currency = $objOrder->getCurrency();
-        $objTemplate->paymill_public_key = $objModule->paymill_public_key;
+        $objTemplate->paymill_public_key = $this->paymill_public_key; // todo: not working
+
+        // todo: email missing
 
         $objTemplate->request_token = RequestToken::get();
         $objTemplate->action = Environment::get('base') . Checkout::generateUrlForStep('complete', $objOrder);
