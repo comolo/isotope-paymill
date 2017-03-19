@@ -52,9 +52,9 @@
     <div id="credit-card-fields"></div>
     <input id="paymillToken" name="paymillToken" type="hidden">
     <input name="REQUEST_TOKEN" type="hidden" value="<?php echo $this->request_token; ?>">
-    <button type="button" onclick="submitForm();"><?= $this->slabel ?></button>
-</form>
 
-<div class="">
-    <a href="<?php echo $this->cancel_return; ?>">Abbrechen</a> <!-- Todo: translation -->
-</div>
+    <div class="submit_container">
+        <a href="<?php echo $this->cancel_return; ?>" class="submit previous button"><?= $this->blabel ?></a>
+        <button type="button" class="submit confirm button" onclick="submitForm();"><?= $this->slabel ?></button>
+    </div>
+</form>

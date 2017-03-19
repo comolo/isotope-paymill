@@ -155,6 +155,7 @@ class PaymillPayment extends Postsale
 
         $objTemplate->headline = specialchars($GLOBALS['TL_LANG']['MSC']['pay_with_redirect'][0]);
         $objTemplate->slabel = specialchars($GLOBALS['TL_LANG']['MSC']['pay_with_redirect'][2]);
+        $objTemplate->blabel = specialchars($GLOBALS['TL_LANG']['MSC']['goBack']);
 
         return $objTemplate->parse();
     }
